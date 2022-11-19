@@ -1,0 +1,90 @@
+<body>
+  <div class="wrapper fadeInDown wr">
+    <div id="formContent">
+      <!-- Tabs Titles -->
+      <!-- <h2 id="sing_in" class="active" style="cursor: pointer;">Registrar Agencia </h2> -->
+      <!-- <h2 id="sing_up" class="inactive underlineHover" style="cursor: pointer;" onclick="registrar()">Registrarse </h2> -->
+      <h3>DATOS DE LA AGENCIA</h3>
+      <!-- <div class="fadeIn first">
+        <br>
+        <img src="https://dbdzm869oupei.cloudfront.net/img/sticker/preview/22672.png" id="icon" alt="User Icon"
+          style="width: 20%;" />
+        <br><br>
+      </div> -->
+
+      <!-- Login Form -->
+      <div class="col-12">
+        <div class="col-12">
+          <form id="registrar">
+            <div *ngIf="admin != true">
+              <div class="row">
+                <div class="col-12">
+                  <input type="text" id="" class="fadeIn second" name="email" placeholder="Nombre de Administrador"
+                    style="font-size: 14px;">
+                </div>
+                <div class="col-12">
+                  <input type="text" id="" class="fadeIn second" name="ruc" placeholder="Correo Electrónico"
+                    style="font-size: 14px;">
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-xl-6 col-lg-6 col-md-12 col-xs-12">
+                  <input type="text" id="lgin" class="fadeIn second col6izq" name="razonSoc" placeholder="Ciudad"
+                    style="font-size: 14px;">
+                </div>
+                <div class="col-xl-6 col-lg-6 col-md-12 col-xs-12">
+                  <input type="text" id="" class="fadeIn second col6der" name="telefono" placeholder="Télefono/Celular"
+                    style="font-size: 14px;">
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-xl-6 col-lg-6 col-md-12 col-xs-12">
+                  <input type="password" id="password" class="fadeIn third col6izq" name="password"
+                    placeholder="Contraseña" style="font-size: 14px;">
+                </div>
+                <div class="col-xl-6 col-lg-6 col-md-12 col-xs-12">
+                  <input type="password" id="password" class="fadeIn third col6der" name="confirmPassword"
+                    placeholder="Repetir contraseña" style="font-size: 14px;">
+                </div>
+              </div>
+
+              <div class="row">
+                <input type="submit" class="fadeIn fourth btnReg" value="Registrar" style="font-size: 14px;"
+                  (click)="activarFormAdmin()">
+              </div>
+            </div>
+            <div *ngIf="admin == true">
+              <hr>
+              <h3>DATOS PARA CUENTA ADMINISTRADOR</h3>
+              <div class="row">
+                <div class="col-12">
+                  <input type="text" id="" class="fadeIn second" name="ruc" placeholder="Correo Electrónico"
+                    style="font-size: 14px;">
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-xl-6 col-lg-6 col-md-12 col-xs-12">
+                  <input type="password" id="password" class="fadeIn third col6izq" name="password"
+                    placeholder="Contraseña" style="font-size: 14px;">
+                </div>
+                <div class="col-xl-6 col-lg-6 col-md-12 col-xs-12">
+                  <input type="password" id="password" class="fadeIn third col6der" name="confirmPassword"
+                    placeholder="Repetir contraseña" style="font-size: 14px;">
+                </div>
+              </div>
+              <div class="row">
+                <input type="submit" class="fadeIn fourth btnReg" value="Registrar" style="font-size: 14px;"
+                  (click)="registrarEmpresa()">
+              </div>
+            </div>
+
+          </form>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</body>

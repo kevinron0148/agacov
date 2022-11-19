@@ -1,0 +1,112 @@
+<html lang="pt-br">
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <title>Login</title>
+
+</head>
+
+
+<body>
+  <div class="wrapper fadeInDown" id="wrapper">
+    <div id="formContent">
+      <!-- Tabs Titles -->
+      <h2 id="sing_in" class="active" onclick="login()" style="cursor: pointer;"> Iniciar Sesión </h2>
+      <h2 id="sing_up" class="inactive underlineHover" style="cursor: pointer;" onclick="registrar()">Registrarse </h2>
+
+      <!-- Icon -->
+      <div class="fadeIn first">
+        <br>
+        <img src="https://dbdzm869oupei.cloudfront.net/img/sticker/preview/22672.png" id="icon" alt="User Icon"
+          style="width: 20%;" />
+        <br><br>
+      </div>
+
+      <!-- Login Form -->
+      <div class="col-12">
+        <div class="col-12">
+          <form id="login">
+            <div class="row">
+              <div class="col-12">
+                <input type="text" id="" class="fadeIn second" name="email" placeholder="Correo Electrónico"
+                  style="font-size: 14px;">
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-12">
+                <select name="select" class="fadeIn third" style="font-size: 14px;">
+                  <option disabled selected>Seleccionar Tipo</option>
+                  <option value="1">Empresa</option>
+                  <option value="2">Administrador</option>
+                  <option value="3">Agencia</option>
+                </select>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-12">
+                <input type="password" id="password" class="fadeIn third" name="password" placeholder="Contraseña"
+                  style="font-size: 14px;">
+              </div>
+            </div>
+            <div class="row">
+              <input type="submit" style="font-size: 10px;" class="fadeIn fourth btnReg" value="Iniciar Sesión" (click)="buscarPasajero()">
+            </div>
+          </form>
+        </div>
+
+        <div class="col-12">
+          <form id="registrar" style="display: none;">
+            <div class="row">
+              <div class="col-12">
+                <input type="text" id="" class="fadeIn second" name="email" placeholder="Correo Electrónico"
+                  style="font-size: 14px;">
+              </div>
+              <div class="col-12">
+                <input type="text" id="lgin" class="fadeIn second" name="razonSoc" placeholder="Razón Social"
+                  style="font-size: 14px;">
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-xl-6 col-lg-6 col-md-12 col-xs-12">
+                <input type="text" id="" class="fadeIn second col6izq" name="ruc" placeholder="Número de RUC"
+                  style="font-size: 14px;">
+              </div>
+              <div class="col-xl-6 col-lg-6 col-md-12 col-xs-12">
+                <input type="text" id="" class="fadeIn second col6der" name="telefono" placeholder="Télefono/Celular"
+                  style="font-size: 14px;">
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-xl-6 col-lg-6 col-md-12 col-xs-12">
+                <input type="password" id="password" class="fadeIn third col6izq" name="password"
+                  placeholder="Contraseña" style="font-size: 14px;">
+              </div>
+              <div class="col-xl-6 col-lg-6 col-md-12 col-xs-12">
+                <input type="password" id="password" class="fadeIn third col6der" name="confirmPassword"
+                  placeholder="Repetir contraseña" style="font-size: 14px;">
+              </div>
+            </div>
+            <div class="row">
+              <input type="submit" class="fadeIn fourth btnReg" value="Registrar" style="font-size: 14px;"
+                (click)="registrarEmpresa()">
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <!-- Remind Passowrd -->
+      <div id="formFooter">
+        <a class="underlineHover" style="cursor: context-menu;">Agacov</a>
+      </div>
+
+    </div>
+  </div>
+
+</body>
+
+</html>
