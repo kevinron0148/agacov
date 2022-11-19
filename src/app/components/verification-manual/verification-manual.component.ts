@@ -24,15 +24,16 @@ export class VerificationManualComponent {
   dataQr = new DatosQr("", "", this.item);
   public mostrarWebcam = false;
   closeResult = "";
-  pregunta1 = new Pregunta("", "", "", "", "");
-  pregunta2 = new Pregunta("", "", "", "", "");
+  pregunta1 = new Pregunta("", "", "", "", "",true, false, false);
+  pregunta2 = new Pregunta("", "", "", "", "",false, false, false);
   open(content) {
     this.modalService
       .open(content, { ariaLabelledBy: "modal-basic-title" })
       .result.then(
         (result) => {
-          console.log(content);
+          //console.log(content);
           this.closeResult = `Closed with: ${result}`;
+          this.item = new Item("", "", "", "", 0, "", 0, "");
         },
         (reason) => {
           this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
@@ -42,11 +43,15 @@ export class VerificationManualComponent {
 
   private getDismissReason(reason: any): string {
     if (reason === ModalDismissReasons.ESC) {
-      return "by pressing ESC";
+      this.item = new Item("", "", "", "", 0, "", 0, "");
+      return "Cancelado";
     } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
-      return "by clicking on a backdrop";
+      this.item = new Item("", "", "", "", 0, "", 0, "");
+      return "Cancelado";
     } else {
-      return `with: ${reason}`;
+      this.item = new Item("", "", "", "", 0, "", 0, "");
+      return "Cancelado";
+      //return `with: ${reason}`;
     }
   }
 
@@ -56,12 +61,17 @@ export class VerificationManualComponent {
   }
 
   public toggleWebcam(): void {
+    if(!this.mostrarWebcam){this.item = new Item("", "", "", "", 0, "", 0, "");}
     this.mostrarWebcam = !this.mostrarWebcam;
+    
   }
 
-  scanSuccessHandler(event: string) {
-    console.log(event);
-    this.results.unshift(this.obtenerToken(event));
+  scanSuccessHandler(event: string, modalName: any) {
+    //console.log(event);
+    if (this.item.docCode == "") {
+      this.results.shift(); // unshit();
+      this.obtenerToken(event, modalName);
+    }
   }
 
   selectCamera(cameraLabel: string) {
@@ -73,8 +83,9 @@ export class VerificationManualComponent {
     });
   }
 
-  obtenerToken(url) {
-    var token = url.split("?");
+  obtenerToken(url, modalName) {
+    if (this.item.docCode == "") {
+      var token = url.split("?");
     this.token.token = token[1];
     this.token.urlToken = url;
     var newToken = this.token.token.split("=");
@@ -94,7 +105,7 @@ export class VerificationManualComponent {
           });
           this.crearPregunta1(this.item);
           this.crearPregunta2(this.item);
-          //this.modalService.open(context);
+          this.modalService.open(modalName);
         } else {
           Swal.fire({
             icon: "error",
@@ -115,6 +126,11 @@ export class VerificationManualComponent {
       }
     );
     return token[1];
+    }
+    else{
+      return "";
+    }
+    
   }
 
   crearPregunta1(item: Item) {
