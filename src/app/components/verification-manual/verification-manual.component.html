@@ -928,7 +928,8 @@
         <img *ngIf="!mostrarWebcam" style="width: 300px;"
           src="https://i.pinimg.com/originals/d7/7e/2c/d77e2cc708655672d9313f87689c9cb2.gif">
         <zxing-scanner *ngIf="mostrarWebcam" style="width: 300px;" [enable]="scannerEnabled" [device]="myDevice"
-          (camerasFound)="camerasFoundHandler($event)" (scanSuccess)="scanSuccessHandler($event, modal)" class="camera">
+          (camerasFound)="camerasFoundHandler($event)"
+          (scanSuccess)="scanSuccessHandler($event, modal); apagarCamara();" class="camera">
         </zxing-scanner>
       </div>
     </div>
@@ -941,14 +942,14 @@
           background: white;
           padding: 2px;
           position: absolute;
-          margin-top: -30px;
-    margin-left: -149px;;" for="cameraSwitchCheckbox">Cámara Apagada</label>
+          margin-top: -23px;
+    margin-left: -150px;" for="cameraSwitchCheckbox">Cámara Apagada</label>
         <label *ngIf="mostrarWebcam" style=" color: green;
           background: white;
           padding: 2px;
           position: absolute;
-          margin-top: -30px;
-    margin-left: -149px;" for="cameraSwitchCheckbox">Cámara Encendedida</label>
+          margin-top: -23px;
+    margin-left: -150px;" for="cameraSwitchCheckbox">Cámara Encendedida</label>
       </div>
       <div class="col-xl-12 col-lg-12  col-md-12 col-xs-12" style="align-items: center;
       text-align: center;">
@@ -962,7 +963,7 @@
 
   <ng-template #datos let-modal style="z-index: 1 !important">
     <div class="modal-header" style="z-index: 1 !important; ">
-      <h4 class="modal-title" id="modal-basic-title" style="z-index: 1 !important">Profile update</h4>
+      <h4 class="modal-title" id="modal-basic-title" style="z-index: 1 !important">Perfil del Pasajero</h4>
       <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
     </div>
     <div class="modal-body" style="z-index: 1 !important">
@@ -992,20 +993,58 @@
                           class="text-sm font-normal">DNI: </span> {{item.docCode}}</span><span
                         class="font-semibold text-base"><span class="text-sm font-normal">Edad:</span> {{item.age}}
                         AÑOS</span></div>
-                    <hr class="mt-3" style="color: rgb(121, 171, 63);">
+                    <hr *ngIf="item.doseNumber >3" class="mt-3" style="color: rgb(121, 171, 63);">
+                    <hr *ngIf="item.doseNumber <=2" class="mt-3" style="color: rgb(201, 41, 23);">
                     <div class="text-center">
                       <h3 class="mt-2 text-pressed text-[18px] font-semibold"> VACUNACIÓN COVID-19 </h3>
-                      <h3 class="text-[28px] font-extrabold mb-1" style="color: rgb(121, 171, 63);"> {{item.doseNumber}}
+                      <h3 *ngIf="item.doseNumber >3" class="text-[28px] font-extrabold mb-1"
+                        style="color: rgb(121, 171, 63);"> {{item.doseNumber}}
+                        DOSIS </h3>
+                      <h3 *ngIf="item.doseNumber <=2" class="text-[28px] font-extrabold mb-1"
+                        style="color: rgb(201, 41, 23);"> {{item.doseNumber}}
                         DOSIS </h3>
                     </div>
                   </div>
-                  <div class="rounded-b-xl" style="background: rgb(121, 171, 63);">
+                  <div *ngIf="item.doseNumber == 4" class="rounded-b-xl" style="background: rgb(121, 171, 63);">
                     <div class="h-[64px] flex items-center justify-between px-8"
                       style="border-radius: 0% 0% 0.75rem 0.75rem;">
                       <h4 class="text-white text-[30px]" style="font-size: 30px; font-family: cursive;">
                         Dosis</h4><img alt="dosses" src="../../../assets/imagenes/check.svg"
                         class="ng-star-inserted"><img alt="dosses" src="../../../assets/imagenes/check.svg"
                         class="ng-star-inserted"><img alt="dosses" src="../../../assets/imagenes/check.svg"
+                        class="ng-star-inserted"><img alt="dosses" src="../../../assets/imagenes/check.svg"
+                        class="ng-star-inserted">
+                    </div>
+                  </div>
+                  <div *ngIf="item.doseNumber == 3" class="rounded-b-xl" style="background: rgb(121, 171, 63);">
+                    <div class="h-[64px] flex items-center justify-between px-8"
+                      style="border-radius: 0% 0% 0.75rem 0.75rem;">
+                      <h4 class="text-white text-[30px]" style="font-size: 30px; font-family: cursive;">
+                        Dosis</h4><img alt="dosses" src="../../../assets/imagenes/check.svg"
+                        class="ng-star-inserted"><img alt="dosses" src="../../../assets/imagenes/check.svg"
+                        class="ng-star-inserted"><img alt="dosses" src="../../../assets/imagenes/check.svg"
+                        class="ng-star-inserted"><img alt="dosses" src="../../../assets/imagenes/circle.svg"
+                        class="ng-star-inserted">
+                    </div>
+                  </div>
+                  <div *ngIf="item.doseNumber == 2" class="rounded-b-xl" style="background: rgb(201, 41, 23);">
+                    <div class="h-[64px] flex items-center justify-between px-8"
+                      style="border-radius: 0% 0% 0.75rem 0.75rem;">
+                      <h4 class="text-white text-[30px]" style="font-size: 30px; font-family: cursive;">
+                        Dosis</h4><img alt="dosses" src="../../../assets/imagenes/check.svg"
+                        class="ng-star-inserted"><img alt="dosses" src="../../../assets/imagenes/check.svg"
+                        class="ng-star-inserted"><img alt="dosses" src="../../../assets/imagenes/circle.svg"
+                        class="ng-star-inserted"><img alt="dosses" src="../../../assets/imagenes/circle.svg"
+                        class="ng-star-inserted">
+                    </div>
+                  </div>
+                  <div *ngIf="item.doseNumber == 1" class="rounded-b-xl" style="background: rgb(201, 41, 23);">
+                    <div class="h-[64px] flex items-center justify-between px-8"
+                      style="border-radius: 0% 0% 0.75rem 0.75rem;">
+                      <h4 class="text-white text-[30px]" style="font-size: 30px; font-family: cursive;">
+                        Dosis</h4><img alt="dosses" src="../../../assets/imagenes/check.svg"
+                        class="ng-star-inserted"><img alt="dosses" src="../../../assets/imagenes/circle.svg"
+                        class="ng-star-inserted"><img alt="dosses" src="../../../assets/imagenes/circle.svg"
                         class="ng-star-inserted"><img alt="dosses" src="../../../assets/imagenes/circle.svg"
                         class="ng-star-inserted">
                     </div>
@@ -1018,27 +1057,32 @@
       </form>
     </div>
     <div class="modal-footer">
-      <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click'); toggleWebcam();">Cerrar</button>
+      <button type="button" class="btn btn-outline-dark" style="background: rgb(206, 75, 23);
+      border-radius: 2rem;
+      padding: 5px;
+      padding-left: 10px; color: white;
+      padding-right: 10px;" (click)="modal.close('Save click'); toggleWebcam();">Cerrar</button>
     </div>
   </ng-template>
 
-  <ng-template #modal let-modal style="z-index: 1 !important; background: #e5e6ad;
-  color: red;
-  font-weight: bold;">
-    <div class="modal-header" style="z-index: 1 !important">
+  <ng-template #modal let-modal>
+    <div class="modal-header" style="z-index: 1 !important" style="z-index: 1 !important; background: #e5e6ad;
+    color: red;
+    font-weight: bold;">
       <h4 class="modal-title" id="modal-basic-title" style="z-index: 1 !important">PREGUNTAS PARA EL CLIENTE</h4>
       <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
     </div>
     <div class="modal-body" style="z-index: 1 !important">
       <form>
-        <div class="col-12" >
+        <div class="col-12">
           <div class="col-xl-6 col-lg-6 col-md-12 col-xs-12" style="margin-bottom: 35px;">
             <section style="display: block;" class="body current" id="wizard-p-8" role="tabpanel"
               aria-labelledby="wizard-h-8" aria-hidden="false">
               <div class="wrapper_row" style="">
                 <div class="row js_error_placement_parent step_9">
                   <div class="m_header_step" data-step="9">
-                    <h1 class="js_error_placement quizz_question required_field">{{pregunta1.pregunta}}</h1>
+                    <h1 class="js_error_placement quizz_question required_field">Consulta al Cliente:
+                      {{pregunta1.pregunta}}</h1>
                   </div>
                   <div class="m_figure_options_values">
                     <div class="m_options_list js_quizz_question">
@@ -1052,7 +1096,7 @@
                               <div class="m_option js_ok_ko_class_placement">
                                 <input class="m_option_input js_quizz_radio"
                                   data-msg-required="Choose one of the options" required="required" type="radio"
-                                  value="" name="rpta1-1" id="rpta1-1" aria-required="true"  [(ngModel)]="pregunta1.rpta1">
+                                  value="36473" name="rpta1-1" id="rpta1-1" aria-required="true">
                                 <label class="m_option_label" for="rpta1-1">
                                   {{pregunta1.opcion1}}
                                 </label>
@@ -1080,7 +1124,7 @@
                               <div class="m_option js_ok_ko_class_placement">
                                 <input class="m_option_input js_quizz_radio"
                                   data-msg-required="Choose one of the options" required="required" type="radio"
-                                  value="36473" name="rpta1-3" id="rpta1-3" aria-required="true">
+                                  value="36475" name="rpta1-3" id="rpta1-3" aria-required="true">
                                 <label class="m_option_label" for="rpta1-3">
                                   {{pregunta1.opcion3}}
                                 </label>
@@ -1108,7 +1152,8 @@
               <div class="wrapper_row" style="">
                 <div class="row js_error_placement_parent step_9">
                   <div class="m_header_step" data-step="9">
-                    <h1 class="js_error_placement quizz_question required_field">{{pregunta2.pregunta}}</h1>
+                    <h1 class="js_error_placement quizz_question required_field"> Consulta al Cliente:
+                      {{pregunta2.pregunta}}</h1>
                   </div>
                   <div class="m_figure_options_values">
                     <div class="m_options_list js_quizz_question">
@@ -1122,7 +1167,7 @@
                               <div class="m_option js_ok_ko_class_placement">
                                 <input class="m_option_input js_quizz_radio"
                                   data-msg-required="Choose one of the options" required="required" type="radio"
-                                  value="36473" name="rpta2-1" id="rpta2-1" aria-required="true">
+                                  value="36476" name="rpta2-1" id="rpta2-1" aria-required="true">
                                 <label class="m_option_label" for="rpta2-1">
                                   {{pregunta2.opcion1}}
                                 </label>
@@ -1136,7 +1181,7 @@
                               <div class="m_option js_ok_ko_class_placement">
                                 <input class="m_option_input js_quizz_radio"
                                   data-msg-required="Choose one of the options" required="required" type="radio"
-                                  value="36474" name="rpta2-2" id="rpta2-2" aria-required="true">
+                                  value="36477" name="rpta2-2" id="rpta2-2" aria-required="true">
                                 <label class="m_option_label" for="rpta2-2">
                                   {{pregunta2.opcion2}}
                                 </label>
@@ -1150,7 +1195,7 @@
                               <div class="m_option js_ok_ko_class_placement">
                                 <input class="m_option_input js_quizz_radio"
                                   data-msg-required="Choose one of the options" required="required" type="radio"
-                                  value="36473" name="rpta2-3" id="rpta2-3" aria-required="true">
+                                  value="36478" name="rpta2-3" id="rpta2-3" aria-required="true">
                                 <label class="m_option_label" for="rpta2-3">
                                   {{pregunta2.opcion3}}
                                 </label>
@@ -1174,13 +1219,17 @@
       </form>
     </div>
     <div class="modal-footer">
-      <button type="button" class="btn btn-outline-dark"
-        (click)="modal.close('Save click');open(datos);">Guardar</button>
+      <button type="button" style="background: lightblue;
+      border-radius: 2rem;
+      padding: 5px;
+      padding-left: 10px;
+      padding-right: 10px;" class="btn btn-outline-dark"
+        (click)="modal.close('Save click'); mostrarDatosPreguntas(); open(datos);">Guardar</button>
     </div>
   </ng-template>
 
   <!-- <button class="btn btn-lg btn-outline-primary" (click)="open(modal)">Launch demo modal</button> -->
-  <hr />
+  <!-- <hr />
 
-  <pre>{{ closeResult }}</pre>
+  <pre>{{ closeResult }}</pre> -->
 </body>

@@ -13,6 +13,7 @@ import { ActualizarDatosAgenciaComponent } from 'app/components/actualizar-datos
 import { VerificationAutoComponent } from 'app/components/verification-auto/verification-auto.component';
 import { VerificationManualComponent } from 'app/components/verification-manual/verification-manual.component';
 import { ActualizarDatosEmpresaComponent } from 'app/components/actualizar-datos-empresa/actualizar-datos-empresa.component';
+import { ReportesComponent } from 'app/components/reportes/reportes.component';
 
 export const AdminLayoutRoutes: Routes = [
     // {
@@ -57,6 +58,7 @@ export const AdminLayoutRoutes: Routes = [
     //         component: UpgradeComponent
     //     }]
     // }
+    { path: 'reportes',      component: ReportesComponent },
     { path: 'verification-auto',      component: VerificationAutoComponent },
     { path: 'verification-manual',      component: VerificationManualComponent },
     { path: 'registro-agencia',      component: RegistrarAgenciaComponent },

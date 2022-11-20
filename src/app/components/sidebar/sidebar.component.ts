@@ -17,6 +17,13 @@ export const ROUTES: RouteInfo[] = [
     classCss: "",
   },
   {
+    path: "/reportes",
+    title: "Reportes",
+    icon: "description",
+    class: "",
+    classCss: "editAgencia",
+  },
+  {
     path: "/editar-agencia",
     title: "Actualizar Agencia",
     icon: "mode_edit",
@@ -25,7 +32,7 @@ export const ROUTES: RouteInfo[] = [
   },
   {
     path: "/editar-empresa",
-    title: "Actualizar Empresa",
+    title: "Mi Perfil",
     icon: "mode_edit",
     class: "",
     classCss: "editAgencia",

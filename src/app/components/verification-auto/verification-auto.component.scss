@@ -5258,21 +5258,23 @@ td.mat-footer-cell {
 .mat-simple-snackbar-action {
     color: #ff4081;
 }
-.camera {
+.camera{
     margin-left: 38%;
 }
 //BUSCAR Y REEMPLAZAR .SVG Y .PNG .JPG EN HTML TAMBIEN
-@media (max-width: 1024px) {
-    .camera {
+@media (max-width: 1024px){
+    .camera{
         margin-left: 6%;
     }
 }
 
-body {
+
+
+body{
     //background-color: #27b08133;
     background: linear-gradient(60deg, #d5e11b7a, #35e55b36);
 }
 
-.modal-backdrop {
-    z-index: 1 !important;
+label{
+    padding-left: 10px;
 }

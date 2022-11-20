@@ -24,14 +24,13 @@ export class VerificationManualComponent {
   dataQr = new DatosQr("", "", this.item);
   public mostrarWebcam = false;
   closeResult = "";
-  pregunta1 = new Pregunta("", "", "", "", "",true, false, false);
-  pregunta2 = new Pregunta("", "", "", "", "",false, false, false);
+  pregunta1 = new Pregunta("", "", "", "", "", true, false, false);
+  pregunta2 = new Pregunta("", "", "", "", "", false, false, false);
   open(content) {
     this.modalService
       .open(content, { ariaLabelledBy: "modal-basic-title" })
       .result.then(
         (result) => {
-          //console.log(content);
           this.closeResult = `Closed with: ${result}`;
           this.item = new Item("", "", "", "", 0, "", 0, "");
         },
@@ -61,16 +60,15 @@ export class VerificationManualComponent {
   }
 
   public toggleWebcam(): void {
-    if(!this.mostrarWebcam){this.item = new Item("", "", "", "", 0, "", 0, "");}
+    if (!this.mostrarWebcam) {
+      this.item = new Item("", "", "", "", 0, "", 0, "");
+    }
     this.mostrarWebcam = !this.mostrarWebcam;
-    
   }
 
   scanSuccessHandler(event: string, modalName: any) {
-    //console.log(event);
     if (this.item.docCode == "") {
-      this.results.shift(); // unshit();
-      this.obtenerToken(event, modalName);
+      this.results.unshift(this.obtenerToken(event, modalName)); // unshit();
     }
   }
 
@@ -83,54 +81,72 @@ export class VerificationManualComponent {
     });
   }
 
+  encenderEscaner(){
+    this.scannerEnabled = true;
+  }
+
+  apagarCamara(){
+    this.scannerEnabled = false;
+  }
+
+  mostrarDatosPreguntas(){
+    console.log(this.pregunta1);
+    console.log(this.pregunta2);
+  }
+
   obtenerToken(url, modalName) {
+    this.scannerEnabled = false;
     if (this.item.docCode == "") {
-      var token = url.split("?");
-    this.token.token = token[1];
-    this.token.urlToken = url;
-    var newToken = this.token.token.split("=");
-    token = newToken[1] + "=";
-    this.token.token = token;
-    this.qrService.obtenerToken(this.token).subscribe(
-      (res) => {
-        if (res != null) {
-          this.mostrarWebcam = false;
-          this.dataQr = res;
-          this.item = this.dataQr.item;
-          Swal.fire({
-            icon: "success",
-            title: "Pasajero Encontrado Correctamente",
-            showConfirmButton: true,
-            timer: 2500,
-          });
-          this.crearPregunta1(this.item);
-          this.crearPregunta2(this.item);
-          this.modalService.open(modalName);
-        } else {
-          Swal.fire({
-            icon: "error",
-            title: "QR Invalido! Por favor, ingrese un QR válido.",
-            showConfirmButton: false,
-            timer: 2500,
-          });
-          //EN ESTE PUNTO SE DEBE GUARDAR QUE SE ESCANEO UN QR FALSO O INVALIDO
-        }
-      },
-      (error) => {
-        Swal.fire({
-          icon: "warning",
-          title: "Error al Encontrar el pasajero, vuelva a intentar",
-          showConfirmButton: false,
-          timer: 1500,
-        });
+      var token = url;
+      if (url.length>47) {
+        token = url.split("?");
+        this.token.token = token[1];
+        this.token.urlToken = url;
+        var newToken = this.token.token.split("=");
+        token = newToken[1] + "=";
+        
       }
-    );
-    return token[1];
-    }
-    else{
+      this.token.token = token;
+      this.qrService.obtenerToken(this.token).subscribe(
+        (res) => {
+          if (res != null) {
+            this.mostrarWebcam = false;
+            this.dataQr = res;
+            this.item = this.dataQr.item;
+            Swal.fire({
+              icon: "success",
+              title: "Pasajero Encontrado Correctamente",
+              showConfirmButton: true,
+              timer: 2500,
+            });
+            this.crearPregunta1(this.item);
+            this.crearPregunta2(this.item);
+            this.modalService.open(modalName);
+          } else {
+            Swal.fire({
+              icon: "error",
+              title: "QR Invalido! Por favor, ingrese un QR válido.",
+              showConfirmButton: false,
+              timer: 2500,
+            });
+           this.encenderEscaner();
+            //EN ESTE PUNTO SE DEBE GUARDAR QUE SE ESCANEO UN QR FALSO O INVALIDO
+          }
+        },
+        (error) => {
+          Swal.fire({
+            icon: "warning",
+            title: "Error al Encontrar el pasajero, vuelva a intentar",
+            showConfirmButton: false,
+            timer: 1500,
+          });
+          this.encenderEscaner();
+        }
+      );
+      return token[1];
+    } else {
       return "";
     }
-    
   }
 
   crearPregunta1(item: Item) {
@@ -143,7 +159,7 @@ export class VerificationManualComponent {
   crearPregunta2(item: Item) {
     this.pregunta2.pregunta = "¿Cuál es su última fecha de vacunación?";
     this.pregunta2.opcion1 = item.lastVaccinationDate as string;
-    this.pregunta2.opcion2 = "20/16/2021";
+    this.pregunta2.opcion2 = "12/07/2022";
     this.pregunta2.opcion3 = "15/12/2022";
   }
 }

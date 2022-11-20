@@ -7,6 +7,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { RegistrarAgenciaComponent } from './registrar-agencia/registrar-agencia.component';
 import { PerfilComponent } from './perfil/perfil.component';
+import { ReportesComponent } from './reportes/reportes.component';
 @NgModule({
   imports: [
     CommonModule,
@@ -18,6 +19,7 @@ import { PerfilComponent } from './perfil/perfil.component';
     SidebarComponent,
     RegistrarAgenciaComponent,
     PerfilComponent,
+    ReportesComponent,
   ],
   exports: [
     FooterComponent,

@@ -910,8 +910,10 @@
 <body>
   <br>
   <h1 style="text-align: center; align-items: center; font-size: 28px; 
-font-family: cursive; font-weight: bold; color: #1a0e5a;padding: 20px;">Verificación Automatica de Carnet Covid-19</h1>
+  font-family: cursive; font-weight: bold; color: #1a0e5a;padding: 20px;">Verificación Automática de Carnet Covid-19
+  </h1>
   <br>
+
   <select #selectList (change)="selectCamera(selectList.value)" *>
     <option *ngFor="let camera of cameras" value={{camera.label}}>
       {{ camera.label }}
@@ -922,81 +924,35 @@ font-family: cursive; font-weight: bold; color: #1a0e5a;padding: 20px;">Verifica
   <div class="row">
     <div class="col-12">
       <div class="col-xl-12 col-lg-12 col-md-12 col-xs-12" style="align-items: center;
-    text-align: center;">
+      text-align: center;">
         <img *ngIf="!mostrarWebcam" style="width: 300px;"
           src="https://i.pinimg.com/originals/d7/7e/2c/d77e2cc708655672d9313f87689c9cb2.gif">
         <zxing-scanner *ngIf="mostrarWebcam" style="width: 300px;" [enable]="scannerEnabled" [device]="myDevice"
-          (camerasFound)="camerasFoundHandler($event)" (scanSuccess)="scanSuccessHandler($event)" class="camera">
+          (camerasFound)="camerasFoundHandler($event)"
+          (scanSuccess)="scanSuccessHandler($event, modal); apagarCamara();" class="camera">
         </zxing-scanner>
       </div>
-      <!-- <div *ngIf="item.docCode != ''" class="col-xl-6 col-lg-6 col-md-12 col-xs-12">
-      <div class="flex justify-center lg:justify-start">
-        <div
-          class="w-full md:w-[759px] lg:w-[505px] xl:w-[634px] 2xl:w-[759px] paddingright flex justify-center lg:py-6 px-4 sm:px-8 lg:px-10 2xl:px-0">
-          <div class="w-full lg:w-[351px] xl:w-[500px] lg:pt-9">
-            <div class="w-full sm:w-[340px] bg-white drop-shadow-md rounded-t-xl rounded-b-xl grid">
-              <div class="px-8 pt-6">
-                <div class="flex justify-center"><img src="" alt="" class="w-2/4"></div>
-                <div>
-                  <h1 *ngIf="item.doseNumber >= 3" style="background: green;
-                  color: white;
-                  font-family: cursive;
-                  font-size: 20px;">APROBADO</h1>
-                  <h1 *ngIf="item.doseNumber < 3" style="background: red;
-                color: white;
-                font-family: cursive;
-                font-size: 20px;">RECHAZADO</h1>
-                </div>
-                <div class="flex justify-center"><span
-                    class="font-extrabold text-textos text-[22px] xl:leading-[28px] uppercase mt-4 text-center">
-                    {{item.name}} {{item.lastname_1}} {{item.lastname_2}} {{item.lastname_3}}</span></div>
-                <div class="flex justify-between mt-4"><span class="font-semibold text-base"><span
-                      class="text-sm font-normal">DNI: </span> {{item.docCode}}</span><span
-                    class="font-semibold text-base"><span class="text-sm font-normal">Edad:</span> {{item.age}}
-                    AÑOS</span></div>
-                <hr class="mt-3" style="color: rgb(121, 171, 63);">
-                <div class="text-center">
-                  <h3 class="mt-2 text-pressed text-[18px] font-semibold"> VACUNACIÓN COVID-19 </h3>
-                  <h3 class="text-[28px] font-extrabold mb-1" style="color: rgb(121, 171, 63);"> {{item.doseNumber}}
-                    DOSIS </h3>
-                </div>
-              </div>
-              <div class="rounded-b-xl" style="background: rgb(121, 171, 63);">
-                <div class="h-[64px] flex items-center justify-between px-8"
-                  style="border-radius: 0% 0% 0.75rem 0.75rem;">
-                  <h4 class="text-white text-[30px]" style="font-size: 30px; font-family: cursive;">
-                    Dosis</h4><img alt="dosses" src="../../../assets/imagenes/check.svg" class="ng-star-inserted"><img
-                    alt="dosses" src="../../../assets/imagenes/check.svg" class="ng-star-inserted"><img alt="dosses"
-                    src="../../../assets/imagenes/check.svg" class="ng-star-inserted"><img alt="dosses"
-                    src="../../../assets/imagenes/circle.svg" class="ng-star-inserted">
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div> -->
     </div>
   </div>
   <div class="row">
     <div class="col-12">
       <div class="col-xl-12 col-lg-12  col-md-12 col-xs-12" style="align-items: center;
-    text-align: center;">
+      text-align: center;">
         <label *ngIf="!mostrarWebcam" style="color: red;
-        background: white;
-        padding: 2px;
-        position: absolute;
-        margin-top: -23px;
-        margin-left: -150px;" for="cameraSwitchCheckbox">Cámara Apagada</label>
+          background: white;
+          padding: 2px;
+          position: absolute;
+          margin-top: -23px;
+    margin-left: -150px;" for="cameraSwitchCheckbox">Cámara Apagada</label>
         <label *ngIf="mostrarWebcam" style=" color: green;
-        background: white;
-        padding: 2px;
-        position: absolute;
-        margin-top: -31px;
-        margin-left: -152px;" for="cameraSwitchCheckbox">Cámara Encendedida</label>
+          background: white;
+          padding: 2px;
+          position: absolute;
+          margin-top: -23px;
+    margin-left: -150px;" for="cameraSwitchCheckbox">Cámara Encendedida</label>
       </div>
       <div class="col-xl-12 col-lg-12  col-md-12 col-xs-12" style="align-items: center;
-    text-align: center;">
+      text-align: center;">
         <button *ngIf="!mostrarWebcam" class="btn btn-primary m-5" style="background-color: green; padding: 12px;"
           (click)="toggleWebcam();">Iniciar Verificación de QR</button>
         <button *ngIf="mostrarWebcam" class="btn btn-primary m-5" style="background-color: red; padding: 12px;"
@@ -1005,37 +961,281 @@ font-family: cursive; font-weight: bold; color: #1a0e5a;padding: 20px;">Verifica
     </div>
   </div>
 
-  <ng-template #content let-modal style="z-index: 1 !important">
-    <div class="modal-header"  style="z-index: 1 !important">
-      <h4 class="modal-title" id="modal-basic-title"  style="z-index: 1 !important">Profile update</h4>
+  <ng-template #datos let-modal style="z-index: 1 !important">
+    <div class="modal-header" style="z-index: 1 !important; ">
+      <h4 class="modal-title" id="modal-basic-title" style="z-index: 1 !important">Tus datos fueron verificados</h4>
       <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
     </div>
-    <div class="modal-body"  style="z-index: 1 !important">
+    <div class="modal-body" style="z-index: 1 !important">
       <form>
-        <div class="mb-3">
-          <label for="dateOfBirth">Date of birth</label>
-          <div class="input-group">
-            <input
-              id="dateOfBirth"
-              class="form-control"
-              placeholder="yyyy-mm-dd"
-              name="dp"
-              ngbDatepicker
-              #dp="ngbDatepicker"
-            />
-            <button class="btn btn-outline-secondary bi bi-calendar3" (click)="dp.toggle()" type="button"></button>
+        <div *ngIf="item.docCode != ''" class="col-xl-6 col-lg-6 col-md-12 col-xs-12">
+          <div class="flex justify-center lg:justify-start">
+            <div
+              class="w-full md:w-[759px] lg:w-[505px] xl:w-[634px] 2xl:w-[759px] paddingright flex justify-center lg:py-6 px-4 sm:px-8 lg:px-10 2xl:px-0">
+              <div class="w-full lg:w-[351px] xl:w-[500px] lg:pt-9">
+                <div class="w-full sm:w-[340px] bg-white drop-shadow-md rounded-t-xl rounded-b-xl grid">
+                  <div class="px-8 pt-6">
+                    <div class="flex justify-center"><img src="" alt="" class="w-2/4"></div>
+                    <div>
+                      <h1 *ngIf="item.doseNumber >= 3" style="background: green;
+                      color: white;
+                      font-family: cursive;
+                      font-size: 20px;">APROBADO</h1>
+                      <h1 *ngIf="item.doseNumber < 3" style="background: red;
+                    color: white;
+                    font-family: cursive;
+                    font-size: 20px;">RECHAZADO</h1>
+                    </div>
+                    <div class="flex justify-center"><span
+                        class="font-extrabold text-textos text-[22px] xl:leading-[28px] uppercase mt-4 text-center">
+                        {{item.name}} {{item.lastname_1}} {{item.lastname_2}} {{item.lastname_3}}</span></div>
+                    <div class="flex justify-between mt-4"><span class="font-semibold text-base"><span
+                          class="text-sm font-normal">DNI: </span> {{item.docCode}}</span><span
+                        class="font-semibold text-base"><span class="text-sm font-normal">Edad:</span> {{item.age}}
+                        AÑOS</span></div>
+                    <hr *ngIf="item.doseNumber >3" class="mt-3" style="color: rgb(121, 171, 63);">
+                    <hr *ngIf="item.doseNumber <=2" class="mt-3" style="color: rgb(201, 41, 23);">
+                    <div class="text-center">
+                      <h3 class="mt-2 text-pressed text-[18px] font-semibold"> VACUNACIÓN COVID-19 </h3>
+                      <h3 *ngIf="item.doseNumber >3" class="text-[28px] font-extrabold mb-1"
+                        style="color: rgb(121, 171, 63);"> {{item.doseNumber}}
+                        DOSIS </h3>
+                      <h3 *ngIf="item.doseNumber <=2" class="text-[28px] font-extrabold mb-1"
+                        style="color: rgb(201, 41, 23);"> {{item.doseNumber}}
+                        DOSIS </h3>
+                    </div>
+                  </div>
+                  <div *ngIf="item.doseNumber == 4" class="rounded-b-xl" style="background: rgb(121, 171, 63);">
+                    <div class="h-[64px] flex items-center justify-between px-8"
+                      style="border-radius: 0% 0% 0.75rem 0.75rem;">
+                      <h4 class="text-white text-[30px]" style="font-size: 30px; font-family: cursive;">
+                        Dosis</h4><img alt="dosses" src="../../../assets/imagenes/check.svg"
+                        class="ng-star-inserted"><img alt="dosses" src="../../../assets/imagenes/check.svg"
+                        class="ng-star-inserted"><img alt="dosses" src="../../../assets/imagenes/check.svg"
+                        class="ng-star-inserted"><img alt="dosses" src="../../../assets/imagenes/check.svg"
+                        class="ng-star-inserted">
+                    </div>
+                  </div>
+                  <div *ngIf="item.doseNumber == 3" class="rounded-b-xl" style="background: rgb(121, 171, 63);">
+                    <div class="h-[64px] flex items-center justify-between px-8"
+                      style="border-radius: 0% 0% 0.75rem 0.75rem;">
+                      <h4 class="text-white text-[30px]" style="font-size: 30px; font-family: cursive;">
+                        Dosis</h4><img alt="dosses" src="../../../assets/imagenes/check.svg"
+                        class="ng-star-inserted"><img alt="dosses" src="../../../assets/imagenes/check.svg"
+                        class="ng-star-inserted"><img alt="dosses" src="../../../assets/imagenes/check.svg"
+                        class="ng-star-inserted"><img alt="dosses" src="../../../assets/imagenes/circle.svg"
+                        class="ng-star-inserted">
+                    </div>
+                  </div>
+                  <div *ngIf="item.doseNumber == 2" class="rounded-b-xl" style="background: rgb(201, 41, 23);">
+                    <div class="h-[64px] flex items-center justify-between px-8"
+                      style="border-radius: 0% 0% 0.75rem 0.75rem;">
+                      <h4 class="text-white text-[30px]" style="font-size: 30px; font-family: cursive;">
+                        Dosis</h4><img alt="dosses" src="../../../assets/imagenes/check.svg"
+                        class="ng-star-inserted"><img alt="dosses" src="../../../assets/imagenes/check.svg"
+                        class="ng-star-inserted"><img alt="dosses" src="../../../assets/imagenes/circle.svg"
+                        class="ng-star-inserted"><img alt="dosses" src="../../../assets/imagenes/circle.svg"
+                        class="ng-star-inserted">
+                    </div>
+                  </div>
+                  <div *ngIf="item.doseNumber == 1" class="rounded-b-xl" style="background: rgb(201, 41, 23);">
+                    <div class="h-[64px] flex items-center justify-between px-8"
+                      style="border-radius: 0% 0% 0.75rem 0.75rem;">
+                      <h4 class="text-white text-[30px]" style="font-size: 30px; font-family: cursive;">
+                        Dosis</h4><img alt="dosses" src="../../../assets/imagenes/check.svg"
+                        class="ng-star-inserted"><img alt="dosses" src="../../../assets/imagenes/circle.svg"
+                        class="ng-star-inserted"><img alt="dosses" src="../../../assets/imagenes/circle.svg"
+                        class="ng-star-inserted"><img alt="dosses" src="../../../assets/imagenes/circle.svg"
+                        class="ng-star-inserted">
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </form>
     </div>
     <div class="modal-footer">
-      <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Save</button>
+      <button type="button" class="btn btn-outline-dark" style="background: rgb(206, 75, 23);
+      border-radius: 2rem;
+      padding: 5px;
+      padding-left: 10px; color: white;
+      padding-right: 10px;" (click)="modal.close('Save click'); encenderEscaner(); toggleWebcam();">Cerrar</button>
     </div>
   </ng-template>
-  
-  <!-- <button class="btn btn-lg btn-outline-primary" (click)="open(content)">Launch demo modal</button>
-   -->
-  <hr />
-  
-  <pre>{{ closeResult }}</pre>
+
+  <ng-template #modal let-modal>
+    <div class="modal-header" style="z-index: 1 !important" style="z-index: 1 !important; background: #e5e6ad;
+    color: red;
+    font-weight: bold;">
+      <h4 class="modal-title" id="modal-basic-title" style="z-index: 1 !important">PREGUNTAS PARA VERIFICAR TU IDENTIDAD
+      </h4>
+      <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+    </div>
+    <div class="modal-body" style="z-index: 1 !important">
+      <form>
+        <div class="col-12">
+          <h2 class="modal-title" id="modal-basic-title" style="z-index: 1 !important; color: red;">Este es el nuevo
+            sistema "AGACOV",
+            por favor responda estas 2 preguntas para poder validar su identidad.</h2>
+          <hr>
+          <br>
+          <div class="col-xl-6 col-lg-6 col-md-12 col-xs-12" style="margin-bottom: 35px;">
+            <section style="display: block;" class="body current" id="wizard-p-8" role="tabpanel"
+              aria-labelledby="wizard-h-8" aria-hidden="false">
+              <div class="wrapper_row" style="">
+                <div class="row js_error_placement_parent step_9">
+                  <div class="m_header_step" data-step="9">
+                    <h1 class="js_error_placement quizz_question required_field">
+                      {{pregunta1.pregunta}}</h1>
+                  </div>
+                  <div class="m_figure_options_values">
+                    <div class="m_options_list js_quizz_question">
+                      <div class="m_options_list_viewport swiper-container-horizontal">
+                        <ol class="swiper_m_options_list_content m_options_list_content"
+                          style="transition-duration: 0ms; transform: translate3d(0px, 0px, 0px);">
+                          <li class="li_wrapper m_options_list_item answer_0 swiper-no-swiping swiper-slide-active"
+                            style="width: 629px;">
+                            <div class="m_options_list_input">
+                              <span class="m_options_list_separator"></span>
+                              <div class="m_option js_ok_ko_class_placement">
+                                <input class="m_option_input js_quizz_radio"
+                                  data-msg-required="Choose one of the options" required="required" type="radio"
+                                  value="36473" name="rpta1-1" id="rpta1-1" aria-required="true">
+                                <label class="m_option_label" for="rpta1-1">
+                                  {{pregunta1.opcion1}}
+                                </label>
+                              </div>
+                            </div>
+                          </li>
+                          <li class="li_wrapper m_options_list_item answer_1 swiper-no-swiping swiper-slide-next"
+                            style="width: 629px;">
+                            <div class="m_options_list_input">
+                              <span class="m_options_list_separator"></span>
+                              <div class="m_option js_ok_ko_class_placement">
+                                <input class="m_option_input js_quizz_radio"
+                                  data-msg-required="Choose one of the options" required="required" type="radio"
+                                  value="36474" name="rpta1-2" id="rpta1-2" aria-required="true">
+                                <label class="m_option_label" for="rpta1-2">
+                                  {{pregunta1.opcion2}}
+                                </label>
+                              </div>
+                            </div>
+                          </li>
+                          <li class="li_wrapper m_options_list_item answer_0 swiper-no-swiping swiper-slide-active"
+                            style="width: 629px;">
+                            <div class="m_options_list_input">
+                              <span class="m_options_list_separator"></span>
+                              <div class="m_option js_ok_ko_class_placement">
+                                <input class="m_option_input js_quizz_radio"
+                                  data-msg-required="Choose one of the options" required="required" type="radio"
+                                  value="36475" name="rpta1-3" id="rpta1-3" aria-required="true">
+                                <label class="m_option_label" for="rpta1-3">
+                                  {{pregunta1.opcion3}}
+                                </label>
+                              </div>
+                            </div>
+                          </li>
+                        </ol>
+                      </div>
+                      <div class="m_options_pagination swiper-pagination-clickable swiper-pagination-bullets">
+                        <span class="m_options_page m_options_page_active"></span>
+                        <span class="m_options_page"></span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div><!-- - class=row -->
+              <!-- - class=wrapper_row -->
+            </section>
+          </div>
+
+
+          <div class="col-xl-6 col-lg-6 col-md-12 col-xs-12" style="margin-bottom: 35px;">
+            <section style="display: block;" class="body current" id="wizard-p-8" role="tabpanel"
+              aria-labelledby="wizard-h-8" aria-hidden="false">
+              <div class="wrapper_row" style="">
+                <div class="row js_error_placement_parent step_9">
+                  <div class="m_header_step" data-step="9">
+                    <h1 class="js_error_placement quizz_question required_field">
+                      {{pregunta2.pregunta}}</h1>
+                  </div>
+                  <div class="m_figure_options_values">
+                    <div class="m_options_list js_quizz_question">
+                      <div class="m_options_list_viewport swiper-container-horizontal">
+                        <ol class="swiper_m_options_list_content m_options_list_content"
+                          style="transition-duration: 0ms; transform: translate3d(0px, 0px, 0px);">
+                          <li class="li_wrapper m_options_list_item answer_0 swiper-no-swiping swiper-slide-active"
+                            style="width: 629px;">
+                            <div class="m_options_list_input">
+                              <span class="m_options_list_separator"></span>
+                              <div class="m_option js_ok_ko_class_placement">
+                                <input class="m_option_input js_quizz_radio"
+                                  data-msg-required="Choose one of the options" required="required" type="radio"
+                                  value="36476" name="rpta2-1" id="rpta2-1" aria-required="true">
+                                <label class="m_option_label" for="rpta2-1">
+                                  {{pregunta2.opcion1}}
+                                </label>
+                              </div>
+                            </div>
+                          </li>
+                          <li class="li_wrapper m_options_list_item answer_1 swiper-no-swiping swiper-slide-next"
+                            style="width: 629px;">
+                            <div class="m_options_list_input">
+                              <span class="m_options_list_separator"></span>
+                              <div class="m_option js_ok_ko_class_placement">
+                                <input class="m_option_input js_quizz_radio"
+                                  data-msg-required="Choose one of the options" required="required" type="radio"
+                                  value="36477" name="rpta2-2" id="rpta2-2" aria-required="true">
+                                <label class="m_option_label" for="rpta2-2">
+                                  {{pregunta2.opcion2}}
+                                </label>
+                              </div>
+                            </div>
+                          </li>
+                          <li class="li_wrapper m_options_list_item answer_0 swiper-no-swiping swiper-slide-active"
+                            style="width: 629px;">
+                            <div class="m_options_list_input">
+                              <span class="m_options_list_separator"></span>
+                              <div class="m_option js_ok_ko_class_placement">
+                                <input class="m_option_input js_quizz_radio"
+                                  data-msg-required="Choose one of the options" required="required" type="radio"
+                                  value="36478" name="rpta2-3" id="rpta2-3" aria-required="true">
+                                <label class="m_option_label" for="rpta2-3">
+                                  {{pregunta2.opcion3}}
+                                </label>
+                              </div>
+                            </div>
+                          </li>
+                        </ol>
+                      </div>
+                      <div class="m_options_pagination swiper-pagination-clickable swiper-pagination-bullets">
+                        <span class="m_options_page m_options_page_active"></span>
+                        <span class="m_options_page"></span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div><!-- - class=row -->
+              <!-- - class=wrapper_row -->
+            </section>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="modal-footer">
+      <button type="button" style="background: lightblue;
+      border-radius: 2rem;
+      padding: 5px;
+      padding-left: 10px;
+      padding-right: 10px;" class="btn btn-outline-dark"
+        (click)="modal.close('Save click');  open(datos);">Guardar</button>
+    </div>
+  </ng-template>
+
+  <!-- <button class="btn btn-lg btn-outline-primary" (click)="open(modal)">Launch demo modal</button> -->
+  <!-- <hr />
+
+  <pre>{{ closeResult }}</pre> -->
 </body>
