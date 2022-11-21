@@ -1,3 +1,91 @@
 <body>
-    <h1>Reportes</h1>
+    <!-- <h2 style="text-align: center;">Reportes </h2> -->
+    <div>
+        <br>
+        <h5 style="padding-left: 15px;font-weight: bold;font-size: 20px;">FILTROS: </h5>
+        <div class="row">
+            <div class="col-12" style="display: flex;">
+                <div class="col-xl-6 col-lg-6 col-md-6 col-xs-6">
+                    <label for="fechaI">Fecha Inicio:</label>
+                    <input type="date" id="fechaI" name="fechaI" value="2022-11-19">
+                </div>
+                <div class="col-xl-6 col-lg-6 col-md-6 col-xs-6">
+                    <label for="fechaF">Fecha Fin:</label>
+                    <input type="date" id="fechaF" name="fechaF" value="2022-11-20">
+                </div>
+            </div>
+        </div>
+    </div>
+    <br>
+    <div class="row" >
+        <div class="col-12" style="display: flex;">
+            <div class="col-xl-6 col-lg-6 col-md-6 col-xs-6">
+                <label for="hora">Horario Inicio:</label>
+                <input type="time" name="hora" value="08:00">
+            </div>
+            <div class="col-xl-6 col-lg-6 col-md-6 col-xs-6">
+                <label for="hora">Horario Fin:</label>
+                <input type="time" name="hora" value="20:00">
+            </div>
+
+        </div>
+    </div>
+    <br>
+    <div class="row" >
+        <div class="col-12" style="display: flex;">
+            <div class="col-xl-6 col-lg-6 col-md-6 col-xs-6">
+                <label for="fechaF">Estado:</label>
+                <select name="select" class="fadeIn third" style="font-size: 14px;">
+                    <option disabled selected>Seleccionar Estado</option>
+                    <option value="1">Aprobado</option>
+                    <option value="2">Rechazado</option>
+                </select>
+            </div>
+            <div class="col-xl-6 col-lg-6 col-md-6 col-xs-6">
+                <br  class="horaMobile">
+                <button type="button" class="btn btn-primary">Buscar</button>
+            </div>
+        </div>
+    </div>
+    <hr>
+    <div class="row">
+        <div class="col-12">
+            <table class="table">
+                <thead style="background: darkkhaki;
+                text-align: center;">
+                    <tr>
+                        <th scope="col">Fecha</th>
+                        <th scope="col">Hora</th>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Edad</th>
+                        <th scope="col">Estado</th>
+                    </tr>
+                </thead>
+                <tbody style="text-align: center;">
+                    <tr>
+                        <td>18/11/2022</td>
+                        <td>08:00</td>
+                        <td>Esther M</td>
+                        <td>45</td>
+                        <td style="background: green;color: white;">Aprobado</td>
+                    </tr>
+                    <tr>
+
+                        <td>18/11/2022</td>
+                        <td>08:01</td>
+                        <td>Alvaro C</td>
+                        <td>18</td>
+                        <td style="background: green;color: white;">Aprobado</td>
+                    </tr>
+                    <tr>
+                        <td>19/11/2022</td>
+                        <td>13:30 pm</td>
+                        <td>Bruno T</td>
+                        <td>25</td>
+                        <td style="background: red;color: white;">Rechazado</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
 </body>

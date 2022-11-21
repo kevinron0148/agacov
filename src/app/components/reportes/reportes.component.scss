@@ -1,0 +1,31 @@
+.horaMobile{
+    display: none;
+}
+
+
+@media (max-width: 1024px){
+    .horaMobile{
+        display: flex;
+    }
+}
+
+input{
+    font-size: 15px;   
+}
+
+label{
+    margin-right: 10px;
+    font-size: 17px;
+    color: black;
+    font-weight: bold;
+}
+
+body{
+    background: linear-gradient(60deg, #d5e11b7a, #35e55b36);
+    font-family: "Poppins", sans-serif;
+}
+
+button{
+    background: red !important;
+    margin-top: -5px;
+}
